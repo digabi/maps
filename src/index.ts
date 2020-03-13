@@ -1,18 +1,13 @@
-import * as leaflet from "leaflet"
-import "leaflet/dist/leaflet.css"
+import * as leaflet from 'leaflet'
+import 'leaflet/dist/leaflet.css'
 
-const createMap = ({
-  mapUrl = "/fi/{z}/{x}/{y}.png",
-  minZoom = 0,
-  maxZoom = 9,
-  errorTileUrl = "/error.png"
-}) => {
-  const map = leaflet.map("map-container").setView([0, 0], 1)
+const createMap = ({ mapUrl = '/fi/{z}/{x}/{y}.png', minZoom = 0, maxZoom = 9, errorTileUrl = '/error.png' }) => {
+  const map = leaflet.map('map-container').setView([0, 0], 1)
 
   const layerOptions: leaflet.TileLayerOptions = {
     minZoom,
     maxZoom,
-    attribution: "YTL",
+    attribution: 'YTL',
     errorTileUrl
   }
 
@@ -21,11 +16,11 @@ const createMap = ({
 
 declare global {
   interface Window {
-    cheatMap: any;
+    cheatMap: any
   }
 }
 
-if (typeof module === "object" && module.exports) {
+if (typeof module === 'object' && module.exports) {
   module.exports = { createMap }
 } else {
   window.cheatMap = { createMap }
