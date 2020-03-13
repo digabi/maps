@@ -11,6 +11,13 @@
     id="map-container"
     style="width: 500px; height: 500px;"
   ></div>
+  <script>
+    const interval = setInterval(() => {
+      if (!cheatMap) return
+      cheatMap.createMap({})
+      clearInterval(interval)
+    }, 100)
+  </script>
 </body>
 
 </html>
