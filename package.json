@@ -2,10 +2,10 @@
   "name": "cheat-maps",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/bundle.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "echo \"Error: no build specified\" && exit 1",
+    "build": "webpack --mode production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
