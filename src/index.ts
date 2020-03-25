@@ -1,4 +1,6 @@
 import * as leaflet from 'leaflet'
+import { DebugLayer } from './debug-layer'
+
 import 'leaflet/dist/leaflet.css'
 
 interface CreateMapParams {
@@ -7,13 +9,15 @@ interface CreateMapParams {
   minZoom: number
   maxZoom: number
   errorTileUrl: string
+  debug: boolean
 }
 const createMap = ({
   container = 'map-container',
   mapUrl = '/fi/{z}/{x}/{y}.png',
   minZoom = 0,
   maxZoom = 9,
-  errorTileUrl = '/error.png'
+  errorTileUrl = '/error.png',
+  debug = false
 }: CreateMapParams) => {
   const map = leaflet.map(container).setView([0, 0], 1)
 
@@ -25,6 +29,10 @@ const createMap = ({
   }
 
   leaflet.tileLayer(mapUrl, layerOptions).addTo(map)
+
+  if (debug) {
+    map.addLayer(new DebugLayer())
+  }
 }
 
 declare global {
