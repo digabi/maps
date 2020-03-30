@@ -1,9 +1,10 @@
 const setupPage = () => {
+  const awsUrl = 'https://s3.eu-north-1.amazonaws.com/maptiles-cheat.abitti.fi-cheat.abitti-prod'
   const maps = {
     '#local-fi': '/world/fi/{z}/{x}/{y}.png',
     '#local-sv': '/world/sv/{z}/{x}/{y}.png',
-    '#aws-fi': 'https://s3.eu-north-1.amazonaws.com/maptiles-cheat.abitti.fi-cheat.abitti-prod/world/fi/{z}/{x}/{y}.png',
-    '#aws-sv': 'https://s3.eu-north-1.amazonaws.com/maptiles-cheat.abitti.fi-cheat.abitti-prod/world/sv/{z}/{x}/{y}.png'
+    '#aws-fi': `${awsUrl}/world/fi/{z}/{x}/{y}.png`,
+    '#aws-sv': `${awsUrl}/world/sv/{z}/{x}/{y}.png`
   }
 
   const settings = {
@@ -29,9 +30,9 @@ const setupPage = () => {
       currentMap.remove()
     }
 
-    const mapUrl = maps[window.location.hash] ?? maps['#local-fi']
+    const mapUrl = maps[window.location.hash] || maps['#local-fi']
 
-    currentMap = cheatMap.createMap({
+    currentMap = window.cheatMap.createMap({
       mapContainer,
       mapUrl,
       debug: settings.debug
@@ -42,7 +43,7 @@ const setupPage = () => {
     }
   }
 
-  const toggleSetting = (event) => {
+  const toggleSetting = event => {
     const settingKey = event.target.getAttribute('data-setting-key')
     if (settingKey) {
       settings[settingKey] = !settings[settingKey]
@@ -62,7 +63,7 @@ const setupPage = () => {
 }
 
 const interval = setInterval(() => {
-  if (!cheatMap) return
+  if (!window.cheatMap) return
   setupPage()
   clearInterval(interval)
 }, 100)
