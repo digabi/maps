@@ -38,10 +38,9 @@ module.exports = (env, argv) => {
     },
     plugins,
     devServer: {
-      contentBase: path.join(__dirname, 'dist'),
       compress: true,
       port: 8080,
-      contentBase: [path.join(__dirname, "maps")]
+      contentBase: [path.join(__dirname, 'maps'), path.join(__dirname, "public")]
     },
   };
 }

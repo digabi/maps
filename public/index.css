@@ -1,0 +1,65 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+nav {
+  display: flex;
+  padding: 0 32px;
+  background-color: #1d92cb;
+}
+
+nav a {
+  padding: 16px;
+  color: #fff;
+  text-decoration: none;
+}
+
+nav a:hover,
+nav a.active {
+  background-color: #2a5f7a;
+}
+
+.container {
+  display: flex;
+  padding: 32px;
+}
+
+#map-container {
+  width: 60vmin;
+  height: 60vmin;
+}
+
+.control-panel {
+  margin-right: 32px;
+  padding: 32px;
+  background-color: #d4dfe4;
+}
+
+.control-panel button {
+  border: none;
+  color: #000;
+  background-color: #fff;
+  padding: 8px;
+  outline: none;
+}
+
+.control-panel button:hover {
+  background-color: #eee;
+  cursor: pointer;
+}
+
+.control-panel button.active {
+  color: #fff;
+  background-color: #1d92cb;
+}
+
+.control-panel button.active:hover {
+  background-color: #2a5f7a;
+  cursor: pointer;
+}

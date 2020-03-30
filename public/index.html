@@ -6,13 +6,20 @@
   </head>
 
   <body>
-    <div id="map-container" style="width: 90%; height: 1000px; margin: 0 auto;"></div>
-    <script>
-      const interval = setInterval(() => {
-        if (!cheatMap) return
-        cheatMap.createMap({ debug: true })
-        clearInterval(interval)
-      }, 100)
-    </script>
+    <nav>
+      <a href="#local-fi">Local FI</a>
+      <a href="#local-sv">Local SV</a>
+      <a href="#aws-fi">AWS FI</a>
+      <a href="#aws-sv">AWS SV</a>
+    </nav>
+    <div class="container">
+      <div class="control-panel">
+        <button data-setting-key="debug">Toggle Debug Grid</button>
+      </div>
+      <div id="map-container"></div>
+    </div>
+
+    <script src="/index.js"></script>
+    <link rel="stylesheet" href="/index.css" />
   </body>
 </html>
