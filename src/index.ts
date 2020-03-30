@@ -28,14 +28,8 @@ const createMap = ({ container, mapUrl, errorTileUrl = '/error.png', debug = fal
   return map
 }
 
-declare global {
-  interface Window {
-    cheatMap: any
-  }
+if (typeof module !== 'object') {
+  ;(window as any).cheatMap = { createMap }
 }
 
-if (typeof module === 'object' && module.exports) {
-  module.exports = { createMap }
-} else {
-  window.cheatMap = { createMap }
-}
+export { createMap }
