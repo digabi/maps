@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = (env, argv) => {
@@ -26,21 +26,21 @@ module.exports = (env, argv) => {
         {
           test: /\.(png|jpe?g|gif)$/i,
           use: [{ loader: 'file-loader' }]
-        },
-      ],
+        }
+      ]
     },
     resolve: {
-      extensions: ['.tsx', '.ts', '.js'],
+      extensions: ['.tsx', '.ts', '.js']
     },
     output: {
       filename: 'bundle.js',
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, 'dist')
     },
     plugins,
     devServer: {
       compress: true,
       port: 8080,
-      contentBase: [path.join(__dirname, 'maps'), path.join(__dirname, "public")]
-    },
-  };
+      contentBase: [path.join(__dirname, 'maps'), path.join(__dirname, 'public')]
+    }
+  }
 }
