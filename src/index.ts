@@ -18,7 +18,7 @@ const createMap = ({
   maxZoom = 9,
   errorTileUrl = '/error.png',
   debug = false
-}: CreateMapParams) => {
+}: CreateMapParams): leaflet.Map => {
   const map = leaflet.map(container).setView([0, 0], 1)
 
   const layerOptions: leaflet.TileLayerOptions = {
@@ -33,6 +33,8 @@ const createMap = ({
   if (debug) {
     map.addLayer(new DebugLayer())
   }
+
+  return map
 }
 
 declare global {
