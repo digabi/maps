@@ -6,24 +6,15 @@ import 'leaflet/dist/leaflet.css'
 interface CreateMapParams {
   container: string | HTMLElement
   mapUrl: string
-  minZoom: number
-  maxZoom: number
-  errorTileUrl: string
-  debug: boolean
+  errorTileUrl?: string
+  debug?: boolean
 }
-const createMap = ({
-  container = 'map-container',
-  mapUrl = '/fi/{z}/{x}/{y}.png',
-  minZoom = 0,
-  maxZoom = 9,
-  errorTileUrl = '/error.png',
-  debug = false
-}: CreateMapParams): leaflet.Map => {
+const createMap = ({ container, mapUrl, errorTileUrl = '/error.png', debug = false }: CreateMapParams): leaflet.Map => {
   const map = leaflet.map(container).setView([0, 0], 1)
 
   const layerOptions: leaflet.TileLayerOptions = {
-    minZoom,
-    maxZoom,
+    minZoom: 0,
+    maxZoom: 9,
     attribution: 'YTL',
     errorTileUrl
   }
