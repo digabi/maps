@@ -1,5 +1,7 @@
 import * as leaflet from 'leaflet'
+
 import { createMap } from '../src/index'
+import { DebugLayer } from './debug-layer'
 
 import './index.css'
 
@@ -45,14 +47,14 @@ interface MapUrls {
 
     const mapUrl: string = maps[window.location.hash] || maps['#local-fi']
 
-    currentMap = createMap({
-      container: mapContainer,
-      mapUrl,
-      debug: settings.debug
-    })
+    currentMap = createMap({ container: mapContainer, mapUrl })
 
     if (oldLocation) {
-      currentMap.setView(oldLocation.latLng, oldLocation.zoom)
+      currentMap.setView(oldLocation.latLng, oldLocation.zoom, { animate: false })
+    }
+
+    if (settings.debug) {
+      currentMap.addLayer(new DebugLayer())
     }
   }
 
