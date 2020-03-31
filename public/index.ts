@@ -1,18 +1,31 @@
-const setupPage = () => {
+import * as leaflet from 'leaflet'
+import { createMap } from '../src/index'
+
+import './index.css'
+
+interface Settings {
+  [key: string]: boolean
+}
+
+interface MapUrls {
+  [key: string]: string
+}
+
+;(() => {
   const awsUrl = 'https://s3.eu-north-1.amazonaws.com/maptiles-cheat.abitti.fi-cheat.abitti-prod'
-  const maps = {
+  const maps: MapUrls = {
     '#local-fi': '/world/fi/{z}/{x}/{y}.png',
     '#local-sv': '/world/sv/{z}/{x}/{y}.png',
     '#aws-fi': `${awsUrl}/world/fi/{z}/{x}/{y}.png`,
     '#aws-sv': `${awsUrl}/world/sv/{z}/{x}/{y}.png`
   }
 
-  const settings = {
+  const settings: Settings = {
     debug: false
   }
 
   const mapContainer = document.getElementById('map-container')
-  let currentMap
+  let currentMap: leaflet.Map
 
   const navigate = () => {
     const oldTab = document.querySelector('nav .active')
@@ -30,10 +43,10 @@ const setupPage = () => {
       currentMap.remove()
     }
 
-    const mapUrl = maps[window.location.hash] || maps['#local-fi']
+    const mapUrl: string = maps[window.location.hash] || maps['#local-fi']
 
-    currentMap = window.cheatMap.createMap({
-      mapContainer,
+    currentMap = createMap({
+      container: mapContainer,
       mapUrl,
       debug: settings.debug
     })
@@ -43,14 +56,17 @@ const setupPage = () => {
     }
   }
 
-  const toggleSetting = event => {
-    const settingKey = event.target.getAttribute('data-setting-key')
+  const toggleSetting = (event: MouseEvent) => {
+    const target = event.target as HTMLElement
+    const settingKey = target.getAttribute('data-setting-key')
+
     if (settingKey) {
       settings[settingKey] = !settings[settingKey]
+
       if (settings[settingKey]) {
-        event.target.classList.add('active')
+        target.classList.add('active')
       } else {
-        event.target.classList.remove('active')
+        target.classList.remove('active')
       }
     }
 
@@ -60,10 +76,4 @@ const setupPage = () => {
   navigate()
   window.addEventListener('hashchange', navigate)
   document.querySelectorAll('.control-panel button').forEach(button => button.addEventListener('click', toggleSetting))
-}
-
-const interval = setInterval(() => {
-  if (!window.cheatMap) return
-  setupPage()
-  clearInterval(interval)
-}, 100)
+})()
