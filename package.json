@@ -1,7 +1,6 @@
 {
-  "name": "cheat-maps",
+  "name": "@digabi/cheat-maps",
   "version": "1.0.0",
-  "description": "",
   "main": "dist/bundle.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -36,5 +35,14 @@
   },
   "dependencies": {
     "leaflet": "^1.6.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/digabi/cheat-maps.git"
+  },
+  "bugs": {
+    "url": "https://github.com/digabi/cheat-maps/issues"
+  },
+  "homepage": "https://github.com/digabi/cheat-maps#readme",
+  "description": ""
 }
