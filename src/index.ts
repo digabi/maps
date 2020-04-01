@@ -1,7 +1,5 @@
 import * as leaflet from 'leaflet'
 
-import 'leaflet/dist/leaflet.css'
-
 interface CreateMapParams {
   container: string | HTMLElement
   mapUrl: string
