@@ -1,11 +1,12 @@
 {
+  "include": ["src"],
   "compilerOptions": {
-    "outDir": "./dist/",
+    "outDir": "dist",
     "sourceMap": true,
     "noImplicitAny": true,
     "strict": true,
     "module": "es6",
-    "target": "es5",
+    "target": "es6",
     "declaration": true
   }
 }
