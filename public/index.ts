@@ -47,6 +47,10 @@ interface MapUrls {
 
     const mapUrl: string = maps[window.location.hash] || maps['#local-fi']
 
+    if (mapContainer === null) {
+      console.error('Map container not found')
+      return
+    }
     currentMap = createMap({ container: mapContainer, mapUrl })
 
     if (oldLocation) {
@@ -77,5 +81,7 @@ interface MapUrls {
 
   navigate()
   window.addEventListener('hashchange', navigate)
-  document.querySelectorAll('.control-panel button').forEach(button => button.addEventListener('click', toggleSetting))
+  document.querySelectorAll('.control-panel button').forEach(button => {
+    ;(button as HTMLElement).addEventListener('click', toggleSetting)
+  })
 })()
