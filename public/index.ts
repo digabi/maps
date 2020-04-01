@@ -3,6 +3,7 @@ import * as leaflet from 'leaflet'
 import { createMap } from '../src/index'
 import { DebugLayer } from './debug-layer'
 
+import 'leaflet/dist/leaflet.css'
 import './index.css'
 
 interface Settings {
