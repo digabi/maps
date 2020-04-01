@@ -13,7 +13,8 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 2",
+    "prepublishOnly": "tsc"
   },
   "devDependencies": {
     "@digabi/eslint-config": "^0.0.12",
