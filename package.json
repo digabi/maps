@@ -6,6 +6,9 @@
   "repository": "https://github.com/digabi/cheat-maps",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "sideEffects": false,
   "dependencies": {
     "leaflet": "^1.6.0"
