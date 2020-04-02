@@ -1,5 +1,4 @@
 import * as leaflet from 'leaflet';
-import 'leaflet/dist/leaflet.css';
 const createMap = ({ container, mapUrl, errorTileUrl = '/error.png' }) => {
     const map = leaflet.map(container).setView([0, 0], 1);
     const layerOptions = {
