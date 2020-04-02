@@ -1,4 +1,4 @@
-# Exam help maps
+# Digabi Maps
 
 This is a tool for exploring different maps. Used in the exams and [cheat.abitti.fi](https://cheat.abitti.fi)
 
