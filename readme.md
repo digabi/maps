@@ -1,6 +1,6 @@
 # Exam help maps
 
-This is a tool used in [cheat.abitti.fi](https://cheat.abitti.fi) and in the exams to explore maps.
+This is a tool for exploring different maps. Used in the exams and [cheat.abitti.fi](https://cheat.abitti.fi)
 
 ## How to use
 
@@ -8,15 +8,15 @@ To use cheat maps you need to fufill the peer dependency of leaflet by installin
 Your project also needs to include the leaflet css file as mentioned in
 [leaflet documentation](https://leafletjs.com/examples/quick-start/)
 
-`yarn add @digabi/exam-help-maps leaflet@~1.6`
+`yarn add @digabi/maps leaflet@~1.6`
 
 ```TypeScript
-import { createMap } from '@digabi/exam-help-maps'
+import { createMap } from '@digabi/maps'
 import 'leaflet/dist/leaflet.css'
 
 createMap({
   container: '#map-container',
-  mapUrl: 'https://url.to.place.with.maps/{z}/{x}/{y}.png'
+  mapUrl: 'https://url.to.maps.com/{z}/{x}/{y}.png'
 })
 ```
 
