@@ -8,10 +8,10 @@ To use cheat maps you need to fufill the peer dependency of leaflet by installin
 Your project also needs to include the leaflet css file as mentioned in
 [leaflet documentation](https://leafletjs.com/examples/quick-start/)
 
-`yarn add @digabi/cheat-maps leaflet@~1.6`
+`yarn add @digabi/exam-help-maps leaflet@~1.6`
 
 ```TypeScript
-import { createMap } from '@digabi/cheat-maps'
+import { createMap } from '@digabi/exam-help-maps'
 import 'leaflet/dist/leaflet.css'
 
 createMap({
@@ -20,7 +20,7 @@ createMap({
 })
 ```
 
-More indepth example can be found from the /public folder in this project.
+More in-depth example can be found from the /public folder in this project.
 
 ## Development
 
