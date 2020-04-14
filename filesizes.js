@@ -92,33 +92,33 @@ const europeRanges = [
     name: 'Europe Zoom 6',
     zoom: 6,
     xMin: 26,
-    xMax: 39,
-    yMin: 13,
-    yMax: 26
+    xMax: 44,
+    yMin: 4,
+    yMax: 51
   },
   {
     name: 'Europe Zoom 7',
     zoom: 7,
-    xMin: 54,
-    xMax: 78,
-    yMin: 27,
-    yMax: 53
+    xMin: 52,
+    xMax: 88,
+    yMin: 9,
+    yMax: 51
   },
   {
     name: 'Europe Zoom 8',
     zoom: 8,
-    xMin: 110,
-    xMax: 156,
-    yMin: 54,
-    yMax: 107
+    xMin: 105,
+    xMax: 177,
+    yMin: 19,
+    yMax: 103
   },
   {
     name: 'Europe Zoom 9',
     zoom: 9,
-    xMin: 221,
-    xMax: 313,
-    yMin: 109,
-    yMax: 215
+    xMin: 211,
+    xMax: 355,
+    yMin: 38,
+    yMax: 301
   }
 ]
 
