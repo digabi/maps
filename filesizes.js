@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 
-const verbose = process.argv.find(arg => arg.val === 'verbose')
+const verbose = process.argv.includes('verbose')
 
 const europeRanges = [
   {
