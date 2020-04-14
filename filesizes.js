@@ -2,6 +2,90 @@ const fs = require('fs')
 const path = require('path')
 
 const verbose = process.argv.includes('verbose')
+const includeAllRanges = process.argv.includes('all')
+
+const allRanges = [
+  {
+    name: 'All tiles zoom 0',
+    zoom: 0,
+    xMin: 0,
+    xMax: 0,
+    yMin: 0,
+    yMax: 0
+  },
+  {
+    name: 'All tiles zoom 1',
+    zoom: 1,
+    xMin: 0,
+    xMax: 1,
+    yMin: 0,
+    yMax: 1
+  },
+  {
+    name: 'All tiles zoom 2',
+    zoom: 2,
+    xMin: 0,
+    xMax: 3,
+    yMin: 0,
+    yMax: 3
+  },
+  {
+    name: 'All tiles zoom 3',
+    zoom: 3,
+    xMin: 0,
+    xMax: 7,
+    yMin: 0,
+    yMax: 7
+  },
+  {
+    name: 'All tiles zoom 4',
+    zoom: 4,
+    xMin: 0,
+    xMax: 15,
+    yMin: 0,
+    yMax: 15
+  },
+  {
+    name: 'All tiles zoom 5',
+    zoom: 5,
+    xMin: 0,
+    xMax: 31,
+    yMin: 0,
+    yMax: 31
+  },
+  {
+    name: 'All tiles zoom 6',
+    zoom: 6,
+    xMin: 0,
+    xMax: 63,
+    yMin: 0,
+    yMax: 63
+  },
+  {
+    name: 'All tiles zoom 7',
+    zoom: 7,
+    xMin: 0,
+    xMax: 127,
+    yMin: 0,
+    yMax: 127
+  },
+  {
+    name: 'All tiles zoom 8',
+    zoom: 8,
+    xMin: 0,
+    xMax: 255,
+    yMin: 0,
+    yMax: 255
+  },
+  {
+    name: 'All tiles zoom 9',
+    zoom: 9,
+    xMin: 0,
+    xMax: 511,
+    yMin: 0,
+    yMax: 511
+  }
+]
 
 const europeRanges = [
   {
@@ -78,6 +162,14 @@ const scan = async () => {
   const mapRootPathFi = path.join(__dirname, 'maps/world/fi')
   const mapRootPathSv = path.join(__dirname, 'maps/world/sv')
 
+  if (includeAllRanges) {
+    console.log('//////////////////////////////////')
+    console.log('Scanning world with finnish tiles')
+    await scanRanges(allRanges, mapRootPathFi)
+    console.log('//////////////////////////////////')
+    console.log('Scanning world with swedish tiles')
+    await scanRanges(allRanges, mapRootPathSv)
+  }
 
   console.log('//////////////////////////////////')
   console.log('Scanning Europe with finnish tiles')
