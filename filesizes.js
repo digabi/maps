@@ -76,7 +76,8 @@ const finlandSwedenRanges = [
 const scan = async () => {
   const startTime = Date.now()
   const mapRootPathFi = path.join(__dirname, 'maps/world/fi')
-  const mapRootPathSv = path.join(__dirname, 'maps/world/fi')
+  const mapRootPathSv = path.join(__dirname, 'maps/world/sv')
+
 
   console.log('//////////////////////////////////')
   console.log('Scanning Europe with finnish tiles')
