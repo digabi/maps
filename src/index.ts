@@ -1,4 +1,5 @@
 import * as leaflet from 'leaflet'
+import { removeDebugLayer, addDebugLayer } from './debug'
 
 interface CreateMapParams {
   container: string | HTMLElement
@@ -6,6 +7,7 @@ interface CreateMapParams {
   errorTileUrl?: string
 }
 const createMap = ({ container, mapUrl, errorTileUrl = '/error.png' }: CreateMapParams): leaflet.Map => {
+  const state = { debug: false }
   const map = leaflet.map(container).setView([0, 0], 1)
 
   const layerOptions: leaflet.TileLayerOptions = {
@@ -16,6 +18,19 @@ const createMap = ({ container, mapUrl, errorTileUrl = '/error.png' }: CreateMap
   }
 
   leaflet.tileLayer(mapUrl, layerOptions).addTo(map)
+
+  map.addEventListener('keypress', (event: leaflet.LeafletKeyboardEvent) => {
+    const keyboardEvent = event.originalEvent
+    if (keyboardEvent.shiftKey && keyboardEvent.key === 'D') {
+      if (state.debug) {
+        state.debug = false
+        removeDebugLayer(map)
+      } else {
+        state.debug = true
+        addDebugLayer(map)
+      }
+    }
+  })
 
   return map
 }
