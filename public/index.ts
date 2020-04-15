@@ -1,14 +1,9 @@
 import * as leaflet from 'leaflet'
 
 import { createMap } from '../src/index'
-import { DebugLayer } from './debug-layer'
 
 import 'leaflet/dist/leaflet.css'
 import './index.css'
-
-interface Settings {
-  [key: string]: boolean
-}
 
 interface MapUrls {
   [key: string]: string
@@ -21,10 +16,6 @@ interface MapUrls {
     '#local-sv': '/world/sv/{z}/{x}/{y}.png',
     '#aws-fi': `${awsUrl}/world/fi/{z}/{x}/{y}.png`,
     '#aws-sv': `${awsUrl}/world/sv/{z}/{x}/{y}.png`
-  }
-
-  const settings: Settings = {
-    debug: false
   }
 
   const mapContainer = document.getElementById('map-container')
@@ -57,32 +48,8 @@ interface MapUrls {
     if (oldLocation) {
       currentMap.setView(oldLocation.latLng, oldLocation.zoom, { animate: false })
     }
-
-    if (settings.debug) {
-      currentMap.addLayer(new DebugLayer())
-    }
-  }
-
-  const toggleSetting = (event: MouseEvent) => {
-    const target = event.target as HTMLElement
-    const settingKey = target.getAttribute('data-setting-key')
-
-    if (settingKey) {
-      settings[settingKey] = !settings[settingKey]
-
-      if (settings[settingKey]) {
-        target.classList.add('active')
-      } else {
-        target.classList.remove('active')
-      }
-    }
-
-    navigate()
   }
 
   navigate()
   window.addEventListener('hashchange', navigate)
-  document.querySelectorAll('.control-panel button').forEach(button => {
-    ;(button as HTMLElement).addEventListener('click', toggleSetting)
-  })
 })()

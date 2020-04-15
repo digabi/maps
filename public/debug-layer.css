@@ -1,9 +1,0 @@
-.debug-info-tile {
-  outline: 1px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  font-size: 16px;
-  font-weight: bold;
-}
