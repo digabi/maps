@@ -35,8 +35,4 @@ const createMap = ({ container, mapUrl, errorTileUrl = '/error.png' }: CreateMap
   return map
 }
 
-if (typeof module !== 'object') {
-  ;(window as any).cheatMap = { createMap }
-}
-
 export { createMap }
