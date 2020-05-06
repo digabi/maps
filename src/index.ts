@@ -1,4 +1,5 @@
 import * as leaflet from 'leaflet'
+import 'leaflet.tilelayer.fallback'
 import { removeDebugLayer, addDebugLayer } from './debug'
 
 interface CreateMapParams {
@@ -6,6 +7,7 @@ interface CreateMapParams {
   mapUrl: string
   errorTileUrl?: string
 }
+
 const createMap = ({ container, mapUrl, errorTileUrl = '/error.png' }: CreateMapParams): leaflet.Map => {
   const state = { debug: false }
   const map = leaflet.map(container).setView([0, 0], 1)
@@ -16,8 +18,7 @@ const createMap = ({ container, mapUrl, errorTileUrl = '/error.png' }: CreateMap
     attribution: 'YTL',
     errorTileUrl
   }
-
-  leaflet.tileLayer(mapUrl, layerOptions).addTo(map)
+  ;(leaflet.tileLayer as any).fallback(mapUrl, layerOptions).addTo(map)
 
   map.addEventListener('keypress', (event: leaflet.LeafletKeyboardEvent) => {
     const keyboardEvent = event.originalEvent
