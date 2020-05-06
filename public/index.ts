@@ -1,5 +1,5 @@
 import * as leaflet from 'leaflet'
-
+import * as path from 'path'
 import { createMap } from '../src/index'
 
 import 'leaflet/dist/leaflet.css'
@@ -10,12 +10,19 @@ interface MapUrls {
 }
 
 ;(() => {
-  const awsUrl = 'https://s3.eu-north-1.amazonaws.com/maptiles-cheat.abitti.fi-cheat.abitti-prod'
+  if (!location.hash) location.hash = 'local-fi'
+
+  const worldMapFi = '/world/fi/{z}/{x}/{y}.png'
+  const worldMapSv = '/world/sv/{z}/{x}/{y}.png'
+  const awsTest = 'https://s3.eu-north-1.amazonaws.com/maptiles-cheat.abitti.fi-cheat.abitti-test'
+  const awsProd = 'https://s3.eu-north-1.amazonaws.com/maptiles-cheat.abitti.fi-cheat.abitti-prod'
   const maps: MapUrls = {
-    '#local-fi': '/world/fi/{z}/{x}/{y}.png',
-    '#local-sv': '/world/sv/{z}/{x}/{y}.png',
-    '#aws-fi': `${awsUrl}/world/fi/{z}/{x}/{y}.png`,
-    '#aws-sv': `${awsUrl}/world/sv/{z}/{x}/{y}.png`
+    '#local-fi': worldMapFi,
+    '#local-sv': worldMapSv,
+    '#aws-fi': path.join(awsProd, worldMapFi),
+    '#aws-sv': path.join(awsProd, worldMapSv),
+    '#aws-fi-test': path.join(awsTest, worldMapFi),
+    '#aws-sv-test': path.join(awsTest, worldMapSv)
   }
 
   const mapContainer = document.getElementById('map-container')
