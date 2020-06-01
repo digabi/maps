@@ -33,6 +33,8 @@ const createMap = ({ container, mapUrl, errorTileUrl = '/error.png' }: CreateMap
     }
   })
 
+  leaflet.control.scale({ imperial: false }).addTo(map)
+
   return map
 }
 
