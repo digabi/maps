@@ -34,6 +34,17 @@ const createMap = ({ container, mapUrl, tileLayerOptions, mapOptions }: CreateMa
     }
   })
 
+  return map
+}
+
+interface WorldMapOptions {
+  container: string | HTMLElement
+  mapUrl: string
+}
+
+const createWorldMap = (worldMapOptions: WorldMapOptions) => {
+  const map = createMap({ ...worldMapOptions })
+
   leaflet.control.scale({ imperial: false }).addTo(map)
 
   return map
@@ -65,4 +76,4 @@ const createTerrainMap = (terrainMapOptions: TerrainMapOptions) => {
   return map
 }
 
-export { createMap, createTerrainMap }
+export { createTerrainMap, createWorldMap }

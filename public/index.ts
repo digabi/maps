@@ -1,6 +1,6 @@
 import * as leaflet from 'leaflet'
 import * as path from 'path'
-import { createMap, createTerrainMap } from '../src/index'
+import { createWorldMap, createTerrainMap } from '../src/index'
 
 import 'leaflet/dist/leaflet.css'
 import './index.css'
@@ -51,7 +51,7 @@ interface MapUrls {
       return
     }
 
-    currentMap = createMap({ container: mapContainer, mapUrl })
+    currentMap = createWorldMap({ container: mapContainer, mapUrl })
 
     if (oldLocation) {
       currentMap.setView(oldLocation.latLng, oldLocation.zoom, { animate: false })
