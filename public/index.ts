@@ -1,6 +1,6 @@
 import * as leaflet from 'leaflet'
 import * as path from 'path'
-import { createMap } from '../src/index'
+import { createMap, createTerrainMap } from '../src/index'
 
 import 'leaflet/dist/leaflet.css'
 import './index.css'
@@ -50,6 +50,7 @@ interface MapUrls {
       console.error('Map container not found')
       return
     }
+
     currentMap = createMap({ container: mapContainer, mapUrl })
 
     if (oldLocation) {
@@ -59,4 +60,9 @@ interface MapUrls {
 
   navigate()
   window.addEventListener('hashchange', navigate)
+
+  const terrainMapUrl = '/maasto/{z}/{x}/{y}.png'
+  const terrainContainer = document.getElementById('terrain-container')
+
+  createTerrainMap({ container: terrainContainer!, mapUrl: terrainMapUrl })
 })()

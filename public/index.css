@@ -27,12 +27,19 @@ nav a.active {
 
 .container {
   display: flex;
+  flex-direction: column;
   padding: 32px;
 }
 
 #map-container {
   width: 100%;
   height: 60vmin;
+}
+
+#terrain-container {
+  margin-top: 32px;
+  width: 100%;
+  height: 768px;
 }
 
 .control-panel {
