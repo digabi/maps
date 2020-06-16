@@ -14,7 +14,7 @@ Your project also needs to include the leaflet css file as mentioned in
 import { createMap } from '@digabi/maps'
 import 'leaflet/dist/leaflet.css'
 
-createMap({
+createWorldMap({
   container: '#map-container',
   mapUrl: 'https://url.to.maps.com/{z}/{x}/{y}.png'
 })
