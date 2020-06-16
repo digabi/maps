@@ -10,6 +10,12 @@ enum MapType {
   Terrain
 }
 
+interface Map {
+  leafletMap: leaflet.Map
+  type: MapType
+  containerId: string
+}
+
 const getMapUrl = (type: MapType) => {
   const awsTest = 'https://s3.eu-north-1.amazonaws.com/maptiles-cheat.abitti.fi-cheat.abitti-test'
   const awsProd = 'https://s3.eu-north-1.amazonaws.com/maptiles-cheat.abitti.fi-cheat.abitti-prod'
@@ -34,45 +40,55 @@ const getMapUrl = (type: MapType) => {
       return mapPath
   }
 }
+
+let maps: Map[] = []
+const navigate = () => {
+  const oldTab = document.querySelector('nav .active')
+  if (oldTab) oldTab.classList.remove('active')
+  const newTab = document.querySelector(`nav [href="${window.location.hash}"]`)
+  if (newTab) newTab.classList.add('active')
+
+  maps = maps.map(({ leafletMap, type, containerId }) => {
+    const oldLocation = {
+      latLng: leafletMap.getBounds().getCenter(),
+      zoom: leafletMap.getZoom()
+    }
+
+    leafletMap.remove()
+
+    const mapContainer = document.getElementById(containerId)
+    const mapParameters = { container: mapContainer!, mapUrl: getMapUrl(type) }
+
+    const newMap = type === MapType.World ? createWorldMap(mapParameters) : createTerrainMap(mapParameters)
+    newMap.setView(oldLocation.latLng, oldLocation.zoom, { animate: false })
+    return {
+      leafletMap: newMap,
+      type,
+      containerId
+    }
+  })
+}
 ;(() => {
   if (!location.hash) location.hash = 'local-fi'
 
-  const mapContainer = document.getElementById('map-container')
-  let currentMap: leaflet.Map
-
-  const navigate = () => {
-    const oldTab = document.querySelector('nav .active')
-    if (oldTab) oldTab.classList.remove('active')
-    const newTab = document.querySelector(`nav [href="${window.location.hash}"]`)
-    if (newTab) newTab.classList.add('active')
-
-    let oldLocation
-    if (currentMap) {
-      oldLocation = {
-        latLng: currentMap.getBounds().getCenter(),
-        zoom: currentMap.getZoom()
-      }
-
-      currentMap.remove()
-    }
-
-    const mapUrl = getMapUrl(MapType.World)
-
-    if (mapContainer === null) {
-      console.error('Map container not found')
-      return
-    }
-
-    currentMap = createWorldMap({ container: mapContainer, mapUrl })
-
-    if (oldLocation) {
-      currentMap.setView(oldLocation.latLng, oldLocation.zoom, { animate: false })
-    }
-  }
-
-  navigate()
-  window.addEventListener('hashchange', navigate)
-
   const terrainContainer = document.getElementById('terrain-container')
-  createTerrainMap({ container: terrainContainer!, mapUrl: getMapUrl(MapType.Terrain) })
+  const worldContainer = document.getElementById('map-container')
+  maps = [
+    {
+      leafletMap: createWorldMap({ container: worldContainer!, mapUrl: getMapUrl(MapType.World) }),
+      type: MapType.World,
+      containerId: 'map-container'
+    },
+    {
+      leafletMap: createTerrainMap({ container: terrainContainer!, mapUrl: getMapUrl(MapType.Terrain) }),
+      type: MapType.Terrain,
+      containerId: 'terrain-container'
+    }
+  ]
+
+  window.addEventListener('hashchange', navigate)
+  const oldTab = document.querySelector('nav .active')
+  if (oldTab) oldTab.classList.remove('active')
+  const newTab = document.querySelector(`nav [href="${window.location.hash}"]`)
+  if (newTab) newTab.classList.add('active')
 })()
