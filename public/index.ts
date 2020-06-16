@@ -5,25 +5,37 @@ import { createWorldMap, createTerrainMap } from '../src/index'
 import 'leaflet/dist/leaflet.css'
 import './index.css'
 
-interface MapUrls {
-  [key: string]: string
+enum MapType {
+  World,
+  Terrain
 }
 
-;(() => {
-  if (!location.hash) location.hash = 'local-fi'
-
-  const worldMapFi = '/world/fi/{z}/{x}/{y}.png'
-  const worldMapSv = '/world/sv/{z}/{x}/{y}.png'
+const getMapUrl = (type: MapType) => {
   const awsTest = 'https://s3.eu-north-1.amazonaws.com/maptiles-cheat.abitti.fi-cheat.abitti-test'
   const awsProd = 'https://s3.eu-north-1.amazonaws.com/maptiles-cheat.abitti.fi-cheat.abitti-prod'
-  const maps: MapUrls = {
-    '#local-fi': worldMapFi,
-    '#local-sv': worldMapSv,
-    '#aws-fi': path.join(awsProd, worldMapFi),
-    '#aws-sv': path.join(awsProd, worldMapSv),
-    '#aws-fi-test': path.join(awsTest, worldMapFi),
-    '#aws-sv-test': path.join(awsTest, worldMapSv)
+
+  let mapPath = '/world/fi/{z}/{x}/{y}.png'
+  if (type === MapType.Terrain) {
+    mapPath = '/terrain/{z}/{x}/{y}.png'
+  } else if (window.location.hash.includes('-sv')) {
+    mapPath = '/world/sv/{z}/{x}/{y}.png'
   }
+
+  switch (window.location.hash) {
+    case '#aws-fi':
+    case '#aws-sv':
+      return path.join(awsProd, mapPath)
+    case '#aws-fi-test':
+    case '#aws-sv-test':
+      return path.join(awsTest, mapPath)
+    case '#local-fi':
+    case '#local-sv':
+    default:
+      return mapPath
+  }
+}
+;(() => {
+  if (!location.hash) location.hash = 'local-fi'
 
   const mapContainer = document.getElementById('map-container')
   let currentMap: leaflet.Map
@@ -44,7 +56,7 @@ interface MapUrls {
       currentMap.remove()
     }
 
-    const mapUrl: string = maps[window.location.hash] || maps['#local-fi']
+    const mapUrl = getMapUrl(MapType.World)
 
     if (mapContainer === null) {
       console.error('Map container not found')
@@ -61,8 +73,6 @@ interface MapUrls {
   navigate()
   window.addEventListener('hashchange', navigate)
 
-  const terrainMapUrl = '/maasto/{z}/{x}/{y}.png'
   const terrainContainer = document.getElementById('terrain-container')
-
-  createTerrainMap({ container: terrainContainer!, mapUrl: terrainMapUrl })
+  createTerrainMap({ container: terrainContainer!, mapUrl: getMapUrl(MapType.Terrain) })
 })()
