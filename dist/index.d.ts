@@ -1,8 +1,13 @@
 import * as leaflet from 'leaflet';
-interface CreateMapParams {
+import 'leaflet.tilelayer.fallback';
+interface WorldMapOptions {
     container: string | HTMLElement;
     mapUrl: string;
-    errorTileUrl?: string;
 }
-declare const createMap: ({ container, mapUrl, errorTileUrl }: CreateMapParams) => leaflet.Map;
-export { createMap };
+declare const createWorldMap: (worldMapOptions: WorldMapOptions) => leaflet.Map;
+interface TerrainMapOptions {
+    container: string | HTMLElement;
+    mapUrl: string;
+}
+declare const createTerrainMap: (terrainMapOptions: TerrainMapOptions) => leaflet.Map;
+export { createTerrainMap, createWorldMap };
