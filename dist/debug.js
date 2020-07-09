@@ -19,7 +19,7 @@ const ZoomLevel = leaflet.Control.extend({
     onAdd: (map) => {
         map.getZoom();
         const textElement = document.createElement('div');
-        textElement.setAttribute('id', 'zoom-level');
+        textElement.setAttribute('id', `${map.getContainer().id}-zoom-level`);
         textElement.innerText = `Current zoom level: ${map.getZoom()}`;
         textElement.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
         textElement.style.padding = '5px';
@@ -31,9 +31,10 @@ const ZoomLevel = leaflet.Control.extend({
 let zoomLevel;
 let debugLayer;
 const onZoomEnd = (event) => {
-    const zoomInfo = document.getElementById('zoom-level');
+    const map = event.target;
+    const zoomInfo = document.getElementById(`${map.getContainer().id}-zoom-level`);
     if (zoomInfo) {
-        const newZoom = event.target.getZoom();
+        const newZoom = map.getZoom();
         zoomInfo.innerText = `Current zoom level: ${newZoom}`;
     }
 };
