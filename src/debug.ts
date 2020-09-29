@@ -3,6 +3,7 @@ import * as leaflet from 'leaflet'
 const DebugLayer = leaflet.GridLayer.extend({
   createTile: (coords: leaflet.Coords) => {
     const tile = document.createElement('div')
+    tile.setAttribute('class', 'debug-tile')
 
     tile.style.outline = '1px solid black'
     tile.style.display = 'flex'
