@@ -7,7 +7,7 @@ import './index.css'
 
 enum MapType {
   World,
-  Terrain
+  Terrain,
 }
 
 interface Map {
@@ -51,7 +51,7 @@ const navigate = () => {
   maps = maps.map(({ leafletMap, type, containerId }) => {
     const oldLocation = {
       latLng: leafletMap.getBounds().getCenter(),
-      zoom: leafletMap.getZoom()
+      zoom: leafletMap.getZoom(),
     }
 
     leafletMap.remove()
@@ -64,7 +64,7 @@ const navigate = () => {
     return {
       leafletMap: newMap,
       type,
-      containerId
+      containerId,
     }
   })
 }
@@ -77,13 +77,13 @@ const navigate = () => {
     {
       leafletMap: createWorldMap({ container: worldContainer!, mapUrl: getMapUrl(MapType.World) }),
       type: MapType.World,
-      containerId: 'map-container'
+      containerId: 'map-container',
     },
     {
       leafletMap: createTerrainMap({ container: terrainContainer!, mapUrl: getMapUrl(MapType.Terrain) }),
       type: MapType.Terrain,
-      containerId: 'terrain-container'
-    }
+      containerId: 'terrain-container',
+    },
   ]
 
   window.addEventListener('hashchange', navigate)

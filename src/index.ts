@@ -17,7 +17,7 @@ const createMap = ({ container, mapUrl, tileLayerOptions, mapOptions }: CreateMa
     minZoom: 0,
     maxZoom: 9,
     attribution: 'YTL',
-    ...tileLayerOptions
+    ...tileLayerOptions,
   }
   ;(leaflet.tileLayer as any).fallback(mapUrl, layerOptions).addTo(map)
 
@@ -58,7 +58,7 @@ interface TerrainMapOptions {
 const createTerrainMap = (terrainMapOptions: TerrainMapOptions) => {
   const tileLayerOptions = {
     minZoom: 1,
-    maxZoom: 6
+    maxZoom: 6,
   }
 
   // According to Maanmittauslaitos one pixel in highest zoom level of the original files of the terrain map is 2048 meters. (Koko_Suomi/zoom_0/Yleiskarttarasteri_8milj.png)
@@ -71,11 +71,11 @@ const createTerrainMap = (terrainMapOptions: TerrainMapOptions) => {
   // We don't need to calculate this for any other level because leaflet calculates them automatically.
   const scaleFactor = 0.000614754 / 2
   const customCrs = leaflet.Util.extend({}, leaflet.CRS.Simple, {
-    transformation: new leaflet.Transformation(scaleFactor, 0, -scaleFactor, 0)
+    transformation: new leaflet.Transformation(scaleFactor, 0, -scaleFactor, 0),
   })
 
   const mapOptions = {
-    crs: customCrs
+    crs: customCrs,
   }
 
   const map = createMap({ ...terrainMapOptions, tileLayerOptions, mapOptions })

@@ -16,7 +16,7 @@ describe('index.js', () => {
     it('renders', () => {
       createWorldMap({
         container: bodyElement,
-        mapUrl: 'dummy'
+        mapUrl: 'dummy',
       })
       assert.isNotNull(document.querySelector('.leaflet-pane'))
     })
@@ -24,7 +24,7 @@ describe('index.js', () => {
     it('supports debug mode', () => {
       createWorldMap({
         container: bodyElement,
-        mapUrl: 'dummy'
+        mapUrl: 'dummy',
       })
       assert.isNull(document.querySelector('.debug-tile'))
       bodyElement.dispatchEvent(debugKeyPressEvent)
@@ -38,7 +38,7 @@ describe('index.js', () => {
     it('renders', () => {
       createTerrainMap({
         container: bodyElement,
-        mapUrl: 'dummy'
+        mapUrl: 'dummy',
       })
       assert.isNotNull(document.querySelector('.leaflet-pane'))
     })
@@ -46,7 +46,7 @@ describe('index.js', () => {
     it('supports debug mode', () => {
       createTerrainMap({
         container: bodyElement,
-        mapUrl: 'dummy'
+        mapUrl: 'dummy',
       })
       assert.isNull(document.querySelector('.debug-tile'))
       bodyElement.dispatchEvent(debugKeyPressEvent)
