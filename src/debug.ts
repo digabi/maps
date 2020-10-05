@@ -19,7 +19,7 @@ const DebugLayer = leaflet.GridLayer.extend({
     tile.appendChild(coordsContainer)
 
     return tile
-  }
+  },
 })
 
 const ZoomLevel = leaflet.Control.extend({
@@ -36,7 +36,7 @@ const ZoomLevel = leaflet.Control.extend({
     textElement.style.fontWeight = 'bold'
 
     return textElement
-  }
+  },
 })
 
 let zoomLevel: leaflet.Control | undefined

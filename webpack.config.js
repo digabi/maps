@@ -8,25 +8,25 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: 'ts-loader'
+        loader: 'ts-loader',
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
-        use: [{ loader: 'file-loader' }]
-      }
-    ]
+        use: [{ loader: 'file-loader' }],
+      },
+    ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js']
+    extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [new HtmlWebpackPlugin({ template: path.join(__dirname, 'public', 'index.html') })],
   devServer: {
     compress: true,
     port: 8080,
-    contentBase: path.join(__dirname, '../map-tiles/tiles')
-  }
+    contentBase: path.join(__dirname, '../map-tiles/tiles'),
+  },
 }
