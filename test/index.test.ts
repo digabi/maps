@@ -17,6 +17,7 @@ describe('index.js', () => {
       createWorldMap({
         container: bodyElement,
         mapUrl: 'dummy',
+        attribution: 'test',
       })
       assert.isNotNull(document.querySelector('.leaflet-pane'))
     })
@@ -25,6 +26,7 @@ describe('index.js', () => {
       createWorldMap({
         container: bodyElement,
         mapUrl: 'dummy',
+        attribution: 'test',
       })
       assert.isNull(document.querySelector('.debug-tile'))
       bodyElement.dispatchEvent(debugKeyPressEvent)
@@ -39,6 +41,7 @@ describe('index.js', () => {
       createTerrainMap({
         container: bodyElement,
         mapUrl: 'dummy',
+        attribution: 'test',
       })
       assert.isNotNull(document.querySelector('.leaflet-pane'))
     })
@@ -47,6 +50,7 @@ describe('index.js', () => {
       createTerrainMap({
         container: bodyElement,
         mapUrl: 'dummy',
+        attribution: 'test',
       })
       assert.isNull(document.querySelector('.debug-tile'))
       bodyElement.dispatchEvent(debugKeyPressEvent)

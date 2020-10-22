@@ -1,21 +1,25 @@
-import * as leaflet from 'leaflet';
-import 'leaflet.tilelayer.fallback';
-import { removeDebugLayer, addDebugLayer } from './debug';
-const createMap = ({ container, mapUrl, tileLayerOptions, mapOptions }) => {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createWorldMap = exports.createTerrainMap = void 0;
+const leaflet = require("leaflet");
+require("leaflet.tilelayer.fallback");
+const debug_1 = require("./debug");
+const createMap = ({ container, mapUrl, attribution, tileLayerOptions, mapOptions }) => {
     const state = { debug: false };
     const map = leaflet.map(container, mapOptions).setView([0, 0], 1);
-    const layerOptions = Object.assign({ minZoom: 0, maxZoom: 9, attribution: 'YTL' }, tileLayerOptions);
+    map.attributionControl.setPrefix('');
+    const layerOptions = Object.assign({ minZoom: 0, maxZoom: 9, attribution }, tileLayerOptions);
     leaflet.tileLayer.fallback(mapUrl, layerOptions).addTo(map);
     map.addEventListener('keypress', (event) => {
         const keyboardEvent = event.originalEvent;
         if (keyboardEvent.shiftKey && keyboardEvent.key === 'D') {
             if (state.debug) {
                 state.debug = false;
-                removeDebugLayer(map);
+                debug_1.removeDebugLayer(map);
             }
             else {
                 state.debug = true;
-                addDebugLayer(map);
+                debug_1.addDebugLayer(map);
             }
         }
     });
@@ -26,10 +30,11 @@ const createWorldMap = (worldMapOptions) => {
     leaflet.control.scale({ imperial: false }).addTo(map);
     return map;
 };
+exports.createWorldMap = createWorldMap;
 const createTerrainMap = (terrainMapOptions) => {
     const tileLayerOptions = {
         minZoom: 1,
-        maxZoom: 6
+        maxZoom: 6,
     };
     // According to Maanmittauslaitos one pixel in highest zoom level of the original files of the terrain map is 2048 meters. (Koko_Suomi/zoom_0/Yleiskarttarasteri_8milj.png)
     // https://www.maanmittauslaitos.fi/kartat-ja-paikkatieto/asiantuntevalle-kayttajalle/tuotekuvaukset/maastokarttasarja-rasteri
@@ -41,10 +46,10 @@ const createTerrainMap = (terrainMapOptions) => {
     // We don't need to calculate this for any other level because leaflet calculates them automatically.
     const scaleFactor = 0.000614754 / 2;
     const customCrs = leaflet.Util.extend({}, leaflet.CRS.Simple, {
-        transformation: new leaflet.Transformation(scaleFactor, 0, -scaleFactor, 0)
+        transformation: new leaflet.Transformation(scaleFactor, 0, -scaleFactor, 0),
     });
     const mapOptions = {
-        crs: customCrs
+        crs: customCrs,
     };
     const map = createMap(Object.assign(Object.assign({}, terrainMapOptions), { tileLayerOptions, mapOptions }));
     const mapWidth = 512;
@@ -55,5 +60,5 @@ const createTerrainMap = (terrainMapOptions) => {
     leaflet.control.scale({ imperial: false }).addTo(map);
     return map;
 };
-export { createTerrainMap, createWorldMap };
+exports.createTerrainMap = createTerrainMap;
 //# sourceMappingURL=index.js.map

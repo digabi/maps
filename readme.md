@@ -35,7 +35,3 @@ You may test map tiles locally by creating a `maps` directory to the root of the
 there. You can then load them by editing the contents of the public directory. By default the project includes urls to
 the same maps used in [cheat.abitti.fi](https://cheat.abitti.fi) and in the exams. These maps can currently be found
 from the `aws` tabs.
-
-### Abikit browser
-
-Note that this project must work with the Abikit browser used in the exams. https://github.com/digabi/abikit-browser

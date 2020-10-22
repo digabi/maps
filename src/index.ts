@@ -5,18 +5,20 @@ import { removeDebugLayer, addDebugLayer } from './debug'
 interface CreateMapParams {
   container: string | HTMLElement
   mapUrl: string
+  attribution: string
   tileLayerOptions?: leaflet.TileLayerOptions
   mapOptions?: leaflet.MapOptions
 }
 
-const createMap = ({ container, mapUrl, tileLayerOptions, mapOptions }: CreateMapParams): leaflet.Map => {
+const createMap = ({ container, mapUrl, attribution, tileLayerOptions, mapOptions }: CreateMapParams): leaflet.Map => {
   const state = { debug: false }
   const map = leaflet.map(container, mapOptions).setView([0, 0], 1)
+  map.attributionControl.setPrefix('')
 
   const layerOptions: leaflet.TileLayerOptions = {
     minZoom: 0,
     maxZoom: 9,
-    attribution: 'YTL',
+    attribution,
     ...tileLayerOptions,
   }
   ;(leaflet.tileLayer as any).fallback(mapUrl, layerOptions).addTo(map)
@@ -40,6 +42,7 @@ const createMap = ({ container, mapUrl, tileLayerOptions, mapOptions }: CreateMa
 interface WorldMapOptions {
   container: string | HTMLElement
   mapUrl: string
+  attribution: string
 }
 
 const createWorldMap = (worldMapOptions: WorldMapOptions) => {
@@ -53,6 +56,7 @@ const createWorldMap = (worldMapOptions: WorldMapOptions) => {
 interface TerrainMapOptions {
   container: string | HTMLElement
   mapUrl: string
+  attribution: string
 }
 
 const createTerrainMap = (terrainMapOptions: TerrainMapOptions) => {
