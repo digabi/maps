@@ -1,7 +1,11 @@
-import * as leaflet from 'leaflet';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.addDebugLayer = exports.removeDebugLayer = void 0;
+const leaflet = require("leaflet");
 const DebugLayer = leaflet.GridLayer.extend({
     createTile: (coords) => {
         const tile = document.createElement('div');
+        tile.setAttribute('class', 'debug-tile');
         tile.style.outline = '1px solid black';
         tile.style.display = 'flex';
         tile.style.justifyContent = 'center';
@@ -13,7 +17,7 @@ const DebugLayer = leaflet.GridLayer.extend({
         coordsContainer.innerText = `x: ${coords.x}, y: ${coords.y}`;
         tile.appendChild(coordsContainer);
         return tile;
-    }
+    },
 });
 const ZoomLevel = leaflet.Control.extend({
     onAdd: (map) => {
@@ -26,7 +30,7 @@ const ZoomLevel = leaflet.Control.extend({
         textElement.style.color = '#FFF';
         textElement.style.fontWeight = 'bold';
         return textElement;
-    }
+    },
 });
 let zoomLevel;
 let debugLayer;
@@ -38,7 +42,7 @@ const onZoomEnd = (event) => {
         zoomInfo.innerText = `Current zoom level: ${newZoom}`;
     }
 };
-export const removeDebugLayer = (map) => {
+exports.removeDebugLayer = (map) => {
     if (zoomLevel) {
         map.removeControl(zoomLevel);
         map.removeEventListener('zoomend', onZoomEnd);
@@ -49,7 +53,7 @@ export const removeDebugLayer = (map) => {
         debugLayer = undefined;
     }
 };
-export const addDebugLayer = (map) => {
+exports.addDebugLayer = (map) => {
     zoomLevel = new ZoomLevel({ position: 'topright' });
     debugLayer = new DebugLayer();
     map.addLayer(debugLayer);
