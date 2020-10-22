@@ -16,7 +16,8 @@ import 'leaflet/dist/leaflet.css'
 
 createWorldMap({
   container: '#map-container',
-  mapUrl: 'https://url.to.maps.com/{z}/{x}/{y}.png'
+  mapUrl: 'https://url.to.maps.com/{z}/{x}/{y}.png',
+  attribution: 'map-copyright-attribution'
 })
 ```
 
