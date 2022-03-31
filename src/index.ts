@@ -5,7 +5,7 @@ import { removeDebugLayer, addDebugLayer } from './debug'
 interface CreateMapParams {
   container: string | HTMLElement
   mapUrl: string
-  attribution: string
+  attribution?: string
   tileLayerOptions?: leaflet.TileLayerOptions
   mapOptions?: leaflet.MapOptions
 }
@@ -42,7 +42,7 @@ const createMap = ({ container, mapUrl, attribution, tileLayerOptions, mapOption
 interface WorldMapOptions {
   container: string | HTMLElement
   mapUrl: string
-  attribution: string
+  attribution?: string
 }
 
 const createWorldMap = (worldMapOptions: WorldMapOptions) => {
@@ -56,7 +56,7 @@ const createWorldMap = (worldMapOptions: WorldMapOptions) => {
 interface TerrainMapOptions {
   container: string | HTMLElement
   mapUrl: string
-  attribution: string
+  attribution?: string
 }
 
 const createTerrainMap = (terrainMapOptions: TerrainMapOptions) => {
