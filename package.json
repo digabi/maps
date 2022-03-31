@@ -14,7 +14,7 @@
     "leaflet": "~1.7"
   },
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack serve --mode development --env development",
     "build": "tsc",
     "lint": "eslint . --ext .js,.ts",
     "unit-test": "mocha --exit test/*.ts",
@@ -43,6 +43,7 @@
     "jsdom-global": "^3.0.2",
     "leaflet": "~1.7",
     "mocha": "^8.4.0",
+    "path-browserify": "^1.0.1",
     "prettier": "^2.6.1",
     "style-loader": "^2.0.0",
     "ts-loader": "^9.2.8",
