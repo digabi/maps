@@ -28,6 +28,6 @@ module.exports = {
   devServer: {
     compress: true,
     port: 8080,
-    contentBase: path.join(__dirname, '../map-tiles/tiles'),
+    static: path.join(__dirname, '../map-tiles/tiles'),
   },
 }
