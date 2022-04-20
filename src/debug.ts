@@ -42,7 +42,7 @@ const ZoomLevel = leaflet.Control.extend({
 let zoomLevel: leaflet.Control | undefined
 let debugLayer: leaflet.GridLayer | undefined
 const onZoomEnd = (event: leaflet.LeafletEvent) => {
-  const map = event.target
+  const map = event.target as leaflet.Map
   const zoomInfo = document.getElementById(`${map.getContainer().id}-zoom-level`)
   if (zoomInfo) {
     const newZoom = map.getZoom()
@@ -65,9 +65,9 @@ export const removeDebugLayer = (map: leaflet.Map) => {
 
 export const addDebugLayer = (map: leaflet.Map) => {
   zoomLevel = new ZoomLevel({ position: 'topright' })
-  debugLayer = new DebugLayer()
+  debugLayer = new DebugLayer() as leaflet.GridLayer
 
-  map.addLayer(debugLayer!)
+  map.addLayer(debugLayer)
   map.addControl(zoomLevel)
   map.addEventListener('zoomend', onZoomEnd)
 }

@@ -21,6 +21,7 @@ const createMap = ({ container, mapUrl, attribution, tileLayerOptions, mapOption
     attribution,
     ...tileLayerOptions,
   }
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
   ;(leaflet.tileLayer as any).fallback(mapUrl, layerOptions).addTo(map)
 
   map.addEventListener('keypress', (event: leaflet.LeafletKeyboardEvent) => {
