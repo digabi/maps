@@ -3,7 +3,9 @@ import { assert } from 'chai'
 import { createWorldMap, createTerrainMap } from '../src'
 
 describe('index.js', () => {
-  let bodyElement: HTMLElement, document: Document, debugKeyPressEvent: KeyboardEvent
+  let bodyElement: HTMLElement
+  let document: Document
+  let debugKeyPressEvent: KeyboardEvent
 
   beforeEach(() => {
     const dom = new JSDOM('<!DOCTYPE html><html><head></head><body>test</body></html>')
