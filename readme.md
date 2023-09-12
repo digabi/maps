@@ -8,7 +8,7 @@ To use cheat maps you need to fufill the peer dependency of leaflet by installin
 Your project also needs to include the leaflet css file as mentioned in
 [leaflet documentation](https://leafletjs.com/examples/quick-start/)
 
-`yarn add @digabi/maps leaflet@~1.6`
+`npm install @digabi/maps leaflet@~1.6`
 
 ```TypeScript
 import { createMap } from '@digabi/maps'
@@ -27,8 +27,8 @@ More in-depth example can be found from the /public folder in this project.
 
 After cloning the repository, the project can be run locally by following the steps below.
 
-1. `yarn install`
-2. `yarn start`
+1. `npm install`
+2. `npm run start`
 
 ### Maps
 
