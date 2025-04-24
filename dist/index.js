@@ -1,7 +1,40 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createWorldMap = exports.createTerrainMap = void 0;
-const leaflet = require("leaflet");
+const leaflet = __importStar(require("leaflet"));
 require("leaflet.tilelayer.fallback");
 const debug_1 = require("./debug");
 const createMap = ({ container, mapUrl, attribution, tileLayerOptions, mapOptions }) => {
@@ -15,11 +48,11 @@ const createMap = ({ container, mapUrl, attribution, tileLayerOptions, mapOption
         if (keyboardEvent.shiftKey && keyboardEvent.key === 'D') {
             if (state.debug) {
                 state.debug = false;
-                debug_1.removeDebugLayer(map);
+                (0, debug_1.removeDebugLayer)(map);
             }
             else {
                 state.debug = true;
-                debug_1.addDebugLayer(map);
+                (0, debug_1.addDebugLayer)(map);
             }
         }
     });
