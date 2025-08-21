@@ -11,7 +11,7 @@
   ],
   "sideEffects": false,
   "peerDependencies": {
-    "leaflet": "~1.8"
+    "leaflet": "~1.9"
   },
   "scripts": {
     "start": "webpack serve --mode development --env development",
@@ -42,7 +42,7 @@
     "html-webpack-plugin": "^5.5.0",
     "jsdom": "^26.0.0",
     "jsdom-global": "^3.0.2",
-    "leaflet": "~1.8",
+    "leaflet": "~1.9",
     "mocha": "^11.0.1",
     "path-browserify": "^1.0.1",
     "prettier": "^3.0.0",
