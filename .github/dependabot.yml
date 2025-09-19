@@ -14,8 +14,8 @@ updates:
       default-days: 7
       exclude:
         - "@digabi/*"
-    labels: [ ]
-    open-pull-requests-limit: 99
+    labels: []
+    open-pull-requests-limit: 0
     ignore:
       # chai 5 is pure esm package that cannot be used yet
       - dependency-name: "chai"
